@@ -3,37 +3,42 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#BBFFFF"
     tools:context=".FragmentFirst">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#BBFFFF"
-        android:layout_margin="5dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Only SMS containing this number" />
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/etNumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number" />
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Only SMS containing this number" />
 
-        <Button
-            android:id="@+id/btnRetrieve"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=" Retrieve SMS" />
+            <EditText
+                android:id="@+id/etNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
 
-        <TextView
-            android:id="@+id/tvText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnRetrieve"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" Retrieve SMS" />
+
+            <TextView
+                android:id="@+id/tvText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
 </FrameLayout>
