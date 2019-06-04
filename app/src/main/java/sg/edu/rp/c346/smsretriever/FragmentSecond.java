@@ -19,10 +19,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class FragmentSecond extends Fragment {
     Button btnRetrieve;
     EditText etWord;
     TextView tvResults;
+    String [] array;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +44,7 @@ public class FragmentSecond extends Fragment {
                 if (word.length() == 0) {
                     Toast.makeText(getContext(), "Please enter a keyword", Toast.LENGTH_LONG).show();
                 } else {
+                    array = word.split("\\s+");
                     int permissionCheck = PermissionChecker.checkSelfPermission
                             (getContext(), Manifest.permission.READ_SMS);
                     if (permissionCheck != PermissionChecker.PERMISSION_GRANTED){
@@ -52,8 +56,12 @@ public class FragmentSecond extends Fragment {
                     Uri uri = Uri.parse("content://sms");
                     String[] reqCols = new String[]{"date", "address", "body", "type"};
                     ContentResolver cr = getActivity().getContentResolver();
+                    String[] filterArgs = new String[array.length];
                     String filter="body LIKE ?";
-                    String[] filterArgs = {"%" + word + "%"};
+                    for (int i = 0; i < array.length; i++) {
+                        filterArgs[i] = "%" + array[i] + "%";
+                        filter += " OR body LIKE ?";
+                    }
                     Cursor cursor = cr.query(uri, reqCols, filter, filterArgs, null);
                     String smsBody = "";
                     if (cursor.moveToFirst()) {
